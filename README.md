@@ -1,6 +1,6 @@
 # R1soft Server Backup Manager
 
-![Docker Build Status](https://img.shields.io/docker/build/boro/r1soft-server-backup-manager.svg) ![Docker Automated build](https://img.shields.io/docker/automated/boro/r1soft-server-backup-manager.svg) ![MicroBadger Size](https://img.shields.io/microbadger/image-size/boro/r1soft-server-backup-manager/latest.svg)
+![Docker Build Status](https://img.shields.io/docker/cloud/build/boro/r1soft-server-backup-manager.svg) ![Docker Automated build](https://img.shields.io/docker/cloud/automated/boro/r1soft-server-backup-manager.svg) ![MicroBadger Size](https://img.shields.io/microbadger/image-size/boro/r1soft-server-backup-manager/latest.svg)
 
 ![Docker Pulls](https://img.shields.io/docker/pulls/boro/r1soft-server-backup-manager.svg) ![Docker Stars](https://img.shields.io/docker/stars/boro/r1soft-server-backup-manager.svg)
 
