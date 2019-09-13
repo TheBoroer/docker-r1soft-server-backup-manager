@@ -19,17 +19,7 @@ args=()
 
 
 
-# Check if we need to copy the initial data, conf, log directory data 
 # (new attached volume directories are blank and SBM fails to start without initial data)
-
-# Check DATA directory, initialize if empty
-if [ "$(ls -A /usr/sbin/r1soft/data)" ]; then
-  echo "DATA: OK"
-else
-  echo "DATA: empty directory found. Initializing."
-  yes | cp -avrf /usr/sbin/r1soft/data-init /usr/sbin/r1soft/data
-fi
-
 # Check CONF directory, initialize if empty
 if [ "$(ls -A /usr/sbin/r1soft/conf)" ]; then
   echo "CONF: OK"

@@ -13,8 +13,7 @@ RUN echo deb http://repo.r1soft.com/apt stable main >> /etc/apt/sources.list \
 RUN apt update
 RUN apt install -y serverbackup-enterprise
 
-# make a copy of the data, conf and log folders.
-RUN cp -avr /usr/sbin/r1soft/data /usr/sbin/r1soft/data-init
+# make a copy of the conf folders.
 RUN cp -avr /usr/sbin/r1soft/conf /usr/sbin/r1soft/conf-init
 RUN cp -avr /usr/sbin/r1soft/log /usr/sbin/r1soft/log-init
 
