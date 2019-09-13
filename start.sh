@@ -21,21 +21,11 @@ args=()
 
 # (new attached volume directories are blank and SBM fails to start without initial data)
 # Check CONF directory, initialize if empty
-if [ "$(ls -A /usr/sbin/r1soft/conf)" ]; then
-  echo "CONF: OK"
-else
-  echo "CONF: empty directory found. Initializing."
-  yes | cp -avrf /usr/sbin/r1soft/conf-init /usr/sbin/r1soft/conf
+if [ ! -f "/usr/sbin/r1soft/conf/server.conf" ]; then
+  echo "server.conf not found. Initializing conf and log directories..."
+  yes | cp -avrf /usr/sbin/r1soft/conf-init/* /usr/sbin/r1soft/conf
+  yes | cp -avrf /usr/sbin/r1soft/log-init/* /usr/sbin/r1soft/log
 fi
-
-# Check LOG directory, initialize if empty
-if [ "$(ls -A /usr/sbin/r1soft/log)" ]; then
-  echo "LOG: OK"
-else
-  echo "LOG: empty directory found. Initializing."
-  yes | cp -avrf /usr/sbin/r1soft/log-init /usr/sbin/r1soft/log
-fi
-
 
 
 # Run setup
@@ -44,5 +34,5 @@ serverbackup-setup ${args[@]}
 # Run Server and stream logs to docker console
 /usr/sbin/r1soft/service-scripts/server-service start \
   && tail -f /usr/sbin/r1soft/log/server.log \
-  || /usr/sbin/r1soft/log/server.log
+  || cat /usr/sbin/r1soft/log/server.log
 # ^ or if server start command fails, output server.log and then quit (easier troubleshooting). 
