@@ -17,6 +17,37 @@ args=()
 [[ ! -z "$CDP_HTTPS_PORT" ]] && args+=( "--https-port ${CDP_HTTPS_PORT}" )
 [[ ! -z "$CDP_MAX_MEM" ]] && args+=( "--set-max-mem ${CDP_MAX_MEM}" )
 
+
+
+# Check if we need to copy the initial data, conf, log directory data 
+# (new attached volume directories are blank and SBM fails to start without initial data)
+
+# Check DATA directory, initialize if empty
+if [ "$(ls -A /usr/sbin/r1soft/data)" ]; then
+  echo "DATA: OK"
+else
+  echo "DATA: empty directory found. Initializing."
+  yes | cp -avrf /usr/sbin/r1soft/data-init /usr/sbin/r1soft/data
+fi
+
+# Check CONF directory, initialize if empty
+if [ "$(ls -A /usr/sbin/r1soft/conf)" ]; then
+  echo "CONF: OK"
+else
+  echo "CONF: empty directory found. Initializing."
+  yes | cp -avrf /usr/sbin/r1soft/conf-init /usr/sbin/r1soft/conf
+fi
+
+# Check LOG directory, initialize if empty
+if [ "$(ls -A /usr/sbin/r1soft/log)" ]; then
+  echo "LOG: OK"
+else
+  echo "LOG: empty directory found. Initializing."
+  yes | cp -avrf /usr/sbin/r1soft/log-init /usr/sbin/r1soft/log
+fi
+
+
+
 # Run setup
 serverbackup-setup ${args[@]}
 
