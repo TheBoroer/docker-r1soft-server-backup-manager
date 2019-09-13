@@ -14,9 +14,9 @@ RUN apt update
 RUN apt install -y serverbackup-enterprise
 
 # make a copy of the data, conf and log folders.
-cp -avr /usr/sbin/r1soft/data /usr/sbin/r1soft/data-init
-cp -avr /usr/sbin/r1soft/conf /usr/sbin/r1soft/conf-init
-cp -avr /usr/sbin/r1soft/log /usr/sbin/r1soft/log-init
+RUN cp -avr /usr/sbin/r1soft/data /usr/sbin/r1soft/data-init
+RUN cp -avr /usr/sbin/r1soft/conf /usr/sbin/r1soft/conf-init
+RUN cp -avr /usr/sbin/r1soft/log /usr/sbin/r1soft/log-init
 
 ADD start.sh /start.sh
 RUN chmod 755 /start.sh
